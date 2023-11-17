@@ -31,6 +31,21 @@ namespace DirectoryViewer.Migrations
                 name: "IX_Directories_ParentId",
                 table: "Directories",
                 column: "ParentId");
+
+            migrationBuilder.InsertData(
+            table: "Directories",
+            columns: new[] { "Name", "ParentId" },
+            values: new object[,]
+            {
+                { "Creating Digital Images", null },
+                { "Resources", 1 },
+                { "Evidence", 1 },
+                { "Graphic Product", 1 },
+                { "Primary Sources", 2 },
+                { "Secondary Sources", 2 },
+                { "Process", 4 },
+                { "Final Product", 4 },
+            });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

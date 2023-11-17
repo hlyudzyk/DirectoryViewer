@@ -8,7 +8,7 @@ namespace DirectoryViewer.Data
 
         public ApplicationDbContext(DbContextOptions options):base(options)
         {
-            Database.EnsureCreated();
+
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

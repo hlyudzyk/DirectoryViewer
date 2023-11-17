@@ -12,15 +12,6 @@ namespace DirectoryViewer.Controllers
         public DirectoriesController(ApplicationDbContext db)
         {
             dbContext = db;
-
-            //DirectoryModel model = new DirectoryModel
-            //{
-            //    Name = "root",
-            //};
-
-            //dbContext.Directories.Add(model);
-
-            //dbContext.SaveChanges();
         }
 
 

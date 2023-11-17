@@ -1,0 +1,71 @@
+﻿ @model DirectoryViewer.Models.IndexVM
+
+<div class="container p-3">
+	<div class="row pt-4">
+		<div class="col-6">
+			<h2 class="text-primary">@Model.ParentDirectory?.Name</h2>
+		</div>
+		<div class="col-6 text-right">
+			<a asp-controller="Directories" asp-action="Create" class="btn btn-primary">
+			 Create new directory
+			</a>
+            @if (!(Model.ParentDirectory.ParentDirectory == null))
+            {
+             <a asp-controller="Directories" asp-action="Index" asp-route-id="@Model.ParentDirectory?.ParentId" class="btn btn-success">
+			 &nbsp; Back to @Model.ParentDirectory?.ParentDirectory?.Name
+			</a>
+            }
+
+		</div>
+	</div>
+	<br /><br />
+@if(Model.Directories.Count() > 0)
+{
+    <table class="table table-bordered table-striped" style="width:100%">
+        <thead>
+            <tr>
+                <th>
+                    <span style="color: black;">DirectoryId</span>
+                </th>
+                <th>
+                    <span style="color: black;">Name</span>
+                </th>
+                <th>
+                    <span style="color: black;">ParentId</span>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var dir in Model.Directories)
+            {
+                <tr class="table-row" data-id="@dir.DirectoryId">
+                    <td width="50%"><span>@dir.DirectoryId</span></td>
+                    <td width="30%"><span>@dir.Name</span></td>
+                    <td width="30%"><span>@dir.ParentId</span></td>
+                    <td class="text-center">
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    }
+	
+	else
+	{
+		<p>No directories.</p>
+	}
+
+</div>
+
+@section Scripts
+{
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(".table-row").click(function () {
+                var directoryId = $(this).data("id");
+                window.location.href = "/Directories/Index/" + directoryId;
+            });
+        });
+    </script>
+}
